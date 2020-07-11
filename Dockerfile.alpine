@@ -1,0 +1,16 @@
+FROM alpine
+
+MAINTAINER Greg White <grewhit25@gmail.com>
+
+RUN set -x && \
+		apk upgrade && \
+		apk --no-cache add mpd && \
+    rm -rf /var/lib/apt/lists/* /tmp/* && \
+		chown -R mpd:audio /var/lib/mpd
+
+
+COPY mpd.conf /etc/mpd.conf
+
+EXPOSE 8000 6600
+
+ENTRYPOINT ["mpd", "--stdout", "--no-daemon"]
