@@ -1,4 +1,4 @@
-FROM ununtu:focal
+FROM ubuntu:focal
 LABEL MAINTAINER Greg White <grewhit25@gmail.com>
 ENV DEBIAN_FRONTEND noninteractive
 
