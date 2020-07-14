@@ -4,14 +4,14 @@ LABEL MAINTAINER Greg White <grewhit25@gmail.com>
 
 RUN set -x && \
 		apk upgrade && \
-		apk --no-cache add mpd && \
+		apk --no-cache add mpd tini && \
     rm -rf /var/lib/apt/lists/* /tmp/* && \
-		mkdir /output && chown mpd:audio /output && \
-		chown -R mpd:audio /var/lib/mpd
+		chown -R mpd:audio /var/lib/mpd && \
+		mkdir /output && chown mpd:audio /output
 
 
 COPY mpd.conf /etc/mpd.conf
 
-EXPOSE 6600
-
-ENTRYPOINT ["mpd", "--stdout", "--no-daemon"]
+# VOLUME [ "/output" ]
+ENTRYPOINT [ "tini", "--"]
+CMD ["mpd", "--stdout", "--no-daemon", "-v"]
