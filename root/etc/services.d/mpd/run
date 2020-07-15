@@ -3,4 +3,4 @@
 # wait for services to come up
 sleep 2
 echo "Starting MPD Server..."
-exec mpd --no-daemon --stdout -v
+exec mpd --no-daemon --stdout
